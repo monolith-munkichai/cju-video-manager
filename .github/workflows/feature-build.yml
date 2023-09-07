@@ -1,0 +1,32 @@
+name: feature Build
+
+on:
+  push:
+    branches-ignore:
+      - main
+    paths-ignore:
+      - '.github/**'
+      - '.editorconfig'
+      - '.gitignore'
+      - 'README.md'
+
+jobs:
+  build:
+    uses: monolith-rnd/reusable-workflows/.github/workflows/gradle-boot-build-image.yml@v1
+    with:
+      build-repo-name: ${{ github.repository }}
+      build-ref: ${{ github.head_ref || github.ref_name }}
+      java-version: '17'
+      distribution: 'temurin'
+      is-release: false
+    secrets: inherit
+
+  deploy-dev:
+    needs: build
+    uses: monolith-rnd/reusable-workflows/.github/workflows/deploy.yml@v1
+    with:
+      environment: dev
+      deploy-repo-name: ${{ github.repository }}-deploy
+      values-file-path: helm/values-dev.yaml
+      image-tag: ${{ needs.build.outputs.image-tag }}
+    secrets: inherit
