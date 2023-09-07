@@ -1,0 +1,10 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: media-spring-boot-init-template
+
+logging:
+  level:
+    kr.co.monolith: info
