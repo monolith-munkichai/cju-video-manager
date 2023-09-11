@@ -1,26 +1,28 @@
 # Getting Started (진행중)
 ### Package Structure
-계층형 구조
 ```
    └── monolith
+       ├── api
+       ├── cdn
        ├── config
-       ├── controller
-       ├── dto
+       ├── core
+       ├── edit
        ├── exception
-       ├── packet
-       ├── service
+       ├── mss
 ```
-* config: 스프링 설정
-* controller: RestAPI Endpoint
-* dto: 프로젝트 내부에서 사용되는 데이터 객체
+* api: on-premise End-point
+* cdn: CDN 비즈니스 로직
+* config: springboot 설정
+* core: 기타 공통 사용 service (event, ffmpeg, log, storage 등)
+* edit: Edit 비즈니스 로직
 * exception: 에러 처리
-* packet: Controller에서만 사용되는 요청(req), 응답(res) 객체. Service 계층에서 사용불가.
-* service: 비즈니스 로직
+* mss: MSS 비즈니스 로직
 
-### Project Purpose
+### Project Concept
 
-온-프레미스 영상 서비스 개발을 위한 기본 템플릿입니다.
-FFMpeg 등 여러 Service가 추가될 예정입니다.
+기존 영상 시스템에서 서비스에 해당하는 (cdn, edit, mss) 하나의 프로젝트로 통합했습니다.
+외부 호출은 api package의 Controller를 통해 이루어집니다. (ex. Agent 업로드시)
+서비스간 호출은 Spring Event 기반으로 이루어집니다. (ex. D코스의 edit 컷 편집 후 mss 오버레이 영상처리)
 
 ### Project Spec
 

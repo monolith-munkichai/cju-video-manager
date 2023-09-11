@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: media-spring-boot-init-template
+    name: cju-video-manager
 
 logging:
   level:
