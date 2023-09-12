@@ -1,7 +1,8 @@
 package kr.co.monolith.edit.listener;
 
 
-import kr.co.monolith.core.event.EditEvent;
+import kr.co.monolith.dto.EditDto;
+import kr.co.monolith.event.Event;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -12,8 +13,8 @@ import org.springframework.stereotype.Component;
 public class EditEventListener {
 
 	@EventListener
-	public void handleContextEvent(EditEvent event) {
-		log.info("Received Spring Event Message={}", event.getMessage());
+	public void handleContextEvent(Event<EditDto> event) {
+		log.info("Received Spring Event Message={}", event.getBody());
 	}
 
 }

@@ -1,7 +1,8 @@
 package kr.co.monolith.mss.listener;
 
 
-import kr.co.monolith.core.event.MssEvent;
+import kr.co.monolith.dto.MssDto;
+import kr.co.monolith.event.Event;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -11,8 +12,8 @@ import org.springframework.stereotype.Component;
 public class MssEventListener {
 
 	@EventListener
-	public void handleContextEvent(MssEvent event) {
-		log.info("Received Spring Event Message={}", event.getMessage());
+	public void handleContextEvent(Event<MssDto> event) {
+		log.info("Received Spring Event Message={}", event.getBody());
 	}
 
 }

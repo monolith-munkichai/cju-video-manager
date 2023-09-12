@@ -44,7 +44,7 @@ public class WebClientConfig {
 	}
 
 	@Bean
-	public WebClient chromeClient(WebClient.Builder webClientBuilder) {
+	public WebClient logClient(WebClient.Builder webClientBuilder) {
 		HttpClient httpClient = HttpClient.newConnection()
 				.doOnConnected(connection ->
 						connection.addHandlerLast(new ReadTimeoutHandler(10000, TimeUnit.MILLISECONDS)) // Read Timeout

@@ -1,21 +1,22 @@
-package kr.co.monolith.core.event.service;
+package kr.co.monolith.event;
 
 
-import kr.co.monolith.core.event.AbstractEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 @Slf4j
-@Service
+@Component
 @RequiredArgsConstructor
-public class EventService {
+public class EventPublisher<T> {
 
 	private final ApplicationEventPublisher applicationEventPublisher;
 
-	public void publish(final AbstractEvent event) {
-		log.info("Publishing custom event message={}", event.getMessage());
+	public void publish(final T body) {
+		log.info("Publishing generic Event.");
+
+		Event<T> event = new Event<>(body);
 		applicationEventPublisher.publishEvent(event);
 	}
 
