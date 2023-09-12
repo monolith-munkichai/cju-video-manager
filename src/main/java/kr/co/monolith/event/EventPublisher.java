@@ -14,8 +14,6 @@ public class EventPublisher<T> {
 	private final ApplicationEventPublisher applicationEventPublisher;
 
 	public void publish(final T body) {
-		log.info("Publishing generic Event.");
-
 		Event<T> event = new Event<>(body);
 		applicationEventPublisher.publishEvent(event);
 	}
